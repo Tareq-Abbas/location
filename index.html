@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Location tracker</title>
+    </head>
+    <body>
+        <h1>your location</h1>
+        <div class="located"></div>
+        <script>
+            
+            let watchId = navigator.geolocation.watchPosition(printLocatio, errorHandler)
+
+
+            function errorHandler(err) {
+            if(err.code == 1) {
+                const div = document.querySelector('.located');
+                div.innerHTML = "Error: Access is denied!";
+               
+            } else if( err.code == 2) {
+                const div = document.querySelector('.located');
+                div.innerHTML = "Error: Position is unavailable!";
+              
+            }
+         };
+
+            function printLocation(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const div = document.querySelector('.located');
+                div.innerHTML = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                
+            }
+
+        </script>
+    </body>
+</html>
